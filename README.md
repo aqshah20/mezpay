@@ -32,4 +32,63 @@ To publish the configuration and migrations for the MezPay package, run the foll
 ```bash
 php artisan vendor:publish --tag=config
 php artisan vendor:publish --tag=mezpay-migrations --ansi
+php artisan migrate
 ```
+After publishing, you can set your API credentials in the generated configuration file located at config/mezpay.php:
+
+```php
+return [
+    'username' => env('MEZPAY_USERNAME', ''),
+    'password' => env('MEZPAY_PASSWORD', ''),
+    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
+    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'field'),
+];
+```
+
+## How to Use:
+To use MezPay, follow these steps:
+
+### Step 1: Import MezPayFacade
+Import the MezPayFacade at the top of the controller or model file where you want to use it:
+```php
+use MezPay\Facade\MezPayFacade;
+```
+
+### Step 2: Register an Order:
+Register an order with the minimum required parameters using the registerOrder method:
+```php
+$paymentGateway = MezPayFacade::registerOrder([
+    'order_id' => 1000,
+    'currency' => 586, // 586 = PKR | 578 = USD
+    'amount' => 20,
+]);
+```
+
+### Configuration
+You can customize the package by adjusting the following settings in the config/mezpay.php file:
+```php
+return [
+    'username' => env('MEZPAY_USERNAME', ''),
+    'password' => env('MEZPAY_PASSWORD', ''),
+    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
+    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'field'),
+];
+```
+### License
+This MezPay package is open-source software licensed under the MIT License. See the LICENSE file for more information.
+### Contributions and Feedback
+Contributions, issues, and feedback are welcome! If you encounter any problems or have suggestions for improvements, please feel free to create an issue on GitHub
+
+Thank you for choosing MezPay to simplify your integration with Meezan Bank's payment gateway. We hope this package streamlines your payment processing and enhances the security of your transactions. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!
+
+
+
+
+
+
+
+
+
+
+
+
