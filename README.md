@@ -1,4 +1,4 @@
-# MezPay: A Laravel Payment Gateway Package for Meezan Bank
+## MezPay: A Laravel Payment Gateway Package for Meezan Bank
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/aqshah20/mezpay/blob/master/LICENSE)
 
