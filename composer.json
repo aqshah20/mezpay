@@ -1,0 +1,37 @@
+{
+    "name": "aqshah20/mezpay",
+    "description": "MezPay: A seamless Laravel payment gateway package empowering secure Meezan Bank payment processing. Simplify integration with Meezan Bank's E-commerce Payment Gateway for effortless transactions, supporting Stripe, PayPal, Braintree, and more.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MezPay\\": "src/",
+            "MezPay\\Models\\": "src/Models"
+        }
+    },
+    "classmap": [
+        "src/MezPayServiceProvider.php",
+        "Handlers/ErrorResponseHandler.php"
+    ],
+    "authors": [
+        {
+            "name": "AQ Shah",
+            "email": "jqsystech@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MezPay\\MezPayServiceProvider"
+            ],
+            "aliases": {
+                "MezPay": "MezPay\\Facade\\MezPayFacade"
+            },
+            "migrations": [
+                "MezPay/src/database/migrations"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
