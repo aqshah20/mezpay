@@ -2,11 +2,11 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/aqshah20/mezpay/blob/master/LICENSE)
 
-## Introduction
+### Introduction
 
 MezPay is a seamless Laravel payment gateway package that empowers secure Meezan Bank payment processing. It simplifies the integration process with Meezan Bank's E-commerce Payment Gateway, allowing you to perform effortless and secure transactions.
 
-## How to Set Up
+### How to Set Up
 
 ### Step 1: Install Package
 
@@ -16,7 +16,7 @@ You can install the MezPay package via Composer. Open your terminal and run the 
 composer require aqshah20/mezpay
 ```
 
-## Step 2: Register MezPay Service Provider
+### Step 2: Register MezPay Service Provider
 After installing the package, you need to register the MezPay service provider in your Laravel application. Open config/app.php and add the following line to the providers array:
 
 ```php
@@ -26,7 +26,7 @@ After installing the package, you need to register the MezPay service provider i
 ]
 ```
 
-## Step 3: Publish Configuration and Migrations:
+### Step 3: Publish Configuration and Migrations:
 To publish the configuration and migrations for the MezPay package, run the following Artisan commands in your terminal:
 
 ```bash
@@ -45,7 +45,7 @@ return [
 ];
 ```
 
-## How to Use:
+### How to Use:
 To use MezPay, follow these steps:
 
 ### Step 1: Import MezPayFacade
@@ -75,9 +75,9 @@ return [
 ];
 ```
 ### License
-This MezPay package is open-source software licensed under the MIT License. See the LICENSE file for more information.
+This MezPay package is open-source software licensed under the MIT License. See the [LICENSE]([https://laravel.com/docs/authorization](https://github.com/spatie/laravel-permission/blob/main/LICENSE.md)) file for more information.
 ### Contributions and Feedback
-Contributions, issues, and feedback are welcome! If you encounter any problems or have suggestions for improvements, please feel free to create an issue on GitHub
+Contributions, issues, and feedback are welcome! If you encounter any problems or have suggestions for improvements, please feel free to create an issue on  [GitHub]([[https://github.com)))
 
 Thank you for choosing MezPay to simplify your integration with Meezan Bank's payment gateway. We hope this package streamlines your payment processing and enhances the security of your transactions. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!
 
