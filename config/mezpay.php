@@ -4,6 +4,7 @@
 return [
     'username' => env('MEZPAY_USERNAME', ''),
     'password' => env('MEZPAY_PASSWORD', ''),
-    'callbackURL' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
+    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
+    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'field'),
 ];
 
