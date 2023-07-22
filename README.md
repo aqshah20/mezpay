@@ -6,6 +6,19 @@
 
 MezPay is a seamless Laravel payment gateway package that empowers secure Meezan Bank payment processing. It simplifies the integration process with Meezan Bank's E-commerce Payment Gateway, allowing you to perform effortless and secure transactions.
 
+## Table of Contents
+
+- [How to Set Up](#how-to-set-up)
+  - [Step 1: Install Package](#step-1-install-package)
+  - [Step 2: Register MezPay Service Provider](#step-2-register-mezpay-service-provider)
+  - [Step 3: Publish Configuration and Migrations](#step-3-publish-configuration-and-migrations)
+- [How to Use](#how-to-use)
+  - [Import MezPayFacade](#import-mezpayfacade)
+  - [Register an Order](#register-an-order)
+- [Configuration](#configuration)
+- [License](#license)
+- [Contributions and Feedback](#contributions-and-feedback)
+
 ## How to Set Up
 
 ### Step 1: Install Package
