@@ -75,7 +75,7 @@ return [
 ];
 ```
 ### License
-This MezPay package is open-source software licensed under the MIT License. See the [LICENSE](https://laravel.com/docs/authorization](https://github.com/spatie/laravel-permission/blob/main/LICENSE.md) file for more information.
+This MezPay package is open-source software licensed under the MIT License. See the [LICENSE](https://github.com/spatie/laravel-permission/blob/main/LICENSE.md) file for more information.
 ### Contributions and Feedback
 Contributions, issues, and feedback are welcome! If you encounter any problems or have suggestions for improvements, please feel free to create an issue on  [GitHub](https://github.com)
 
