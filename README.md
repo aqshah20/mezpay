@@ -78,7 +78,7 @@ $paymentGateway = MezPayFacade::registerOrder([
 ]);
 ```
 ### How to Get Order Status:
-To obtain the order status, simply call the #### getOrderStatus(152)  method with the  #### orderId as a parameter.
+To obtain the order status, simply call the  **getOrderStatus(152)**  method with the  **orderId** as a parameter.
 
 
 
