@@ -126,6 +126,21 @@ $paymentGateway = MezPayFacade::registerOrder([
     'amount' => 1000,
 ]);
 ```
+
+### Order Registration and Payment
+After a user successfully registers an order, they will be redirected to a checkout screen where they can enter their card details to proceed with the payment. An example of this checkout screen can be seen in the following image: 
+![Example Image](https://photos.app.goo.gl/CpAFU5tmFZnRexdw5)
+
+### Payment Status Redirection
+Upon completing the checkout and submitting their payment details:
+
+If the payment is successful, the user will be automatically redirected to the success route, where they will receive a confirmation message and any additional relevant information.
+In the event of a payment failure, the user will be redirected to the failed route, where they will receive a notification and further instructions.
+It is essential to properly configure these redirection routes in your application to handle the payment status and provide the appropriate responses to the user based on the outcome of the payment process.
+
+Ensure that the redirection routes are correctly set up to provide a seamless and user-friendly payment experience for your users.
+
+
 ### How to Get Order Status:
 To obtain the order status, simply call the  **getOrderStatus(152)**  method with the  **orderId** as a parameter.
 ```php
