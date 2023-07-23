@@ -7,19 +7,21 @@ use MezPay\Helpers\MezPayUrls;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use MezPay\Models\MezPay;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Config;
 use MezPay\Handlers\ErrorResponseHandler;
 use MezPay\Controllers\PaymentController;
+use MezPay\Traits\OrderProcessor;
 use Carbon\Carbon;
 use Redirect;
 use InvalidArgumentException;
-use MezPay\Models\MezPay;
 
 
 class OrderManager implements PaymentGateway
 {
+    use OrderProcessor;
 
     public function registerOrder(array $request)
     {
@@ -65,13 +67,6 @@ class OrderManager implements PaymentGateway
         $apiUserName = config('mezpay.username');
         $apiPassword = config('mezpay.password');
         
-        // Retrieve the success route from the configuration
-        $successRoute = config('mezpay.success_callback');
-
-        // Build the complete success URL using the retrieved success route and the order ID
-        $returnUrl = URL::to($successRoute, ['orderid' => $orderNumber]);
- 
-
         // Prepare the API request parameters using the retrieved credentials
         $apiURL =  MezPayUrls::getRegisterUrl();
         $postInput = [
@@ -94,36 +89,25 @@ class OrderManager implements PaymentGateway
         // Check if the API response contains an error code and handle accordingly
         if ( isset($responseBody['errorCode']) && $responseBody['errorCode'] == 0 ) {
             
-            MezPay::create([
+            $data = [
                 'order_id'          => $orderNumber,
                 'order_secret_key'  => $responseBody['orderId'],
                 'order_url'         => $responseBody['formUrl'],
-            ]);
-           
-            //return redirect($responseBody['formUrl']);
-            header('Location: ' . $responseBody['formUrl']);exit();
-        } else {
+            ];
+            
+            MezPay::fillOut($data);
+            $this->redirectTo($responseBody['formUrl']);
 
-            //return ErrorResponseHandler::errorResponse($responseBody['errorCode']);
+        } else {
             return $responseBody;
-            //return view('mezpay::error', ['error' => $responseBody]);
         }
     }
 
-    public function getOrderStatus(string $orderId)
-    {
-
+    public function getOrderStatus(int $orderId){
+        return $this->getOrderPaymentStatus($orderId);
     }
-    public function processPayment(string $orderId){
-
-    }
-    public function createPaymentRequest(string $orderId){
-
-    }
-    public function updateOrderStatus(string $orderId){
-
-    }
-    public function reverseOrder(string $orderId){
-        
-    }
+    public function processPayment(string $orderId){}
+    public function createPaymentRequest(string $orderId){}
+    public function updateOrderStatus(string $orderId){}
+    public function reverseOrder(string $orderId){}
 }

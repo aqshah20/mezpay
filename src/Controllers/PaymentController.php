@@ -6,64 +6,44 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
+use MezPay\Helpers\MezPayUrls;
+use MezPay\Traits\OrderProcessor;
 
 use Illuminate\Http\Request;
 
 class PaymentController
 {
+    
+    use OrderProcessor;
+    
     public function handleCallback(Request $request)
     {
         if( $request->has('orderid') ) {
 
             $order_id =  $request->query('orderid');
-            $tempOrderData = Session::get('temp_order_data_'.$order_id);
-            
-            $apiURL = 'https://acquiring.meezanbank.com/payment/rest/getOrderStatusExtended.do';
 
-            // API credentials
-            $userName   = config('mezpay.username');
-            $password   = config('mezpay.password');
-            $returnURL  = config('mezpay.callbackURL');
-
-            // Prepare the request data
-            $postInput = [
-                'userName' => $userName,
-                'password' => $password,
-                'orderId'  => $order_id,
-            ];
+            // Retrieve the success route from the configuration
+            $successRoute = config('mezpay.success_callback');
+            $failedRoute = config('mezpay.failed_callback');
 
             try {
-                // Make the API request using GuzzleHttp
-                $client = new Client();
-                $response = $client->post($apiURL, ['form_params' => $postInput]);
-
-                // Get the response status code and body
-                $statusCode = $response->getStatusCode();
-                $responseBody = json_decode($response->getBody(), true);
-
-                $status = "";
-                // Check for success response (errorCode = 0)
-                if (isset($responseBody['errorCode']) && $responseBody['errorCode'] == 0) {
-                    $orderStatus = $responseBody['orderStatus'];
-                    $status = $orderStatus == '3' ? 'Paid' : 'Failed';
-
+                $redirectedURL = "";
+                $response =  $this->getOrderPaymentStatus($order_id);
+                if (isset($response['errorCode']) && $response['errorCode'] == 0) {
+                    if( $response['orderStatus'] == 2 ) // Payment was successfull.
+                    {
+                        $redirectedURL = $successRoute;
+                    }else{
+                        $redirectedURL = $failedRoute;
+                    }
                 } else {
-                    // Handle error response
-                    //dd($responseBody['errorCode']);
-                    $status =  'Failed';
+                    $redirectedURL = $failedRoute;
                 }
 
-                // Construct the URL with parameters
-                $url = URL::to($apiURL);
-                $query = http_build_query([
-                    'orderid' => $orderid,
-                    'status' => $status,
-                ]);
-                $redirectUrl = $url . '?' . $query;
-
-                // Perform the redirect using the header() function
-                header('Location: ' . $redirectUrl);
-                exit; // Ensure no further code is executed after the redirect
+                $url = URL::to($redirectedURL);
+                $redirectUrl = $url.'/'.$order_id;
+                
+                $this->redirectTo($redirectUrl);
 
             } catch (\Exception $e) {
                 // Handle API request exception

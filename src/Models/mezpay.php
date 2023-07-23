@@ -15,4 +15,16 @@ class mezpay extends Model
         'order_secret_key',
         'order_url',
     ];
+
+
+    public static function fillOut(array $data)
+    {
+        mezpay::create($data);
+    }
+
+    public static function getOrderKey($orderId)
+    {
+        return mezpay::where('order_id',$orderId)->first()->order_secret_key ?? null;
+    }
+
 }
