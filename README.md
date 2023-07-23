@@ -138,7 +138,7 @@ Upon completing the checkout and submitting their payment details:
 
 - If the payment is successful, the user will be automatically redirected to the success route, where they will receive a confirmation message and any additional relevant information.
 - In the event of a payment failure, the user will be redirected to the failed route, where they will receive a notification and further instructions.
-It is essential to properly configure these redirection routes in your application to handle the payment status and provide the appropriate responses to the user based on the outcome of the payment process.
+- It is essential to properly configure these redirection routes in your application to handle the payment status and provide the appropriate responses to the user based on the outcome of the payment process.
 
 Ensure that the redirection routes are correctly set up to provide a seamless and user-friendly payment experience for your users.
 
