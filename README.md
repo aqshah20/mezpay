@@ -129,7 +129,8 @@ $paymentGateway = MezPayFacade::registerOrder([
 
 ### Order Registration and Payment
 After a user successfully registers an order, they will be redirected to a checkout screen where they can enter their card details to proceed with the payment. An example of this checkout screen can be seen in the following image: 
-[<img src="https://aqssoft.com/mezpay/images/checkout.png"  />]
+
+<img src="https://aqssoft.com/mezpay/images/checkout.png"  />
 
 
 ### Payment Status Redirection
