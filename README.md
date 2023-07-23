@@ -57,6 +57,55 @@ return [
     'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'failed'),
 ];
 ```
+### Handling Payment Callbacks
+
+After configuring the MezPay package, you need to create routes to handle the payment success and failure callbacks.
+
+### Step 1: Create Routes
+
+In your `routes/web.php` file, add the following routes to handle the payment success and failure callbacks:
+
+```php
+use App\Http\Controllers\OrdersController;
+
+Route::get('/success/{orderId?}', [OrdersController::class, 'orderSucceeded'])->name('success');
+Route::get('/failed/{orderId?}', [OrdersController::class, 'orderFailed'])->name('failed');
+```
+### Step 2: Implement Controller Methods
+Next, create the OrdersController if you haven't already. In the controller, implement the orderSucceeded and orderFailed methods to process the payment callback responses:
+
+```php
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class OrdersController extends Controller
+{
+    public function orderSucceeded(Request $request)
+    {
+        // Get the orderId from the URL parameter or any other source as needed
+        $orderId = $request->orderId;
+
+        // Perform actions for successful payment
+        // For example, update order status, send notifications, etc.
+
+        // You can also pass the $orderId to a view if needed
+        return view('success', compact('orderId'));
+    }
+
+    public function orderFailed(Request $request)
+    {
+        // Get the orderId from the URL parameter or any other source as needed
+        $orderId = $request->orderId;
+
+        // Perform actions for failed payment
+        // For example, update order status, send notifications, etc.
+
+        // You can also pass the $orderId to a view if needed
+        return view('failed', compact('orderId'));
+    }
+}
+
+```
 
 
 ### How to Use:
