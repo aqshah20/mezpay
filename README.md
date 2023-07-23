@@ -2,13 +2,13 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/aqshah20/mezpay/blob/master/LICENSE)
 
-### Introduction
+## Introduction
 
 MezPay is a seamless Laravel payment gateway package that empowers secure Meezan Bank payment processing. It simplifies the integration process with Meezan Bank's E-commerce Payment Gateway, allowing you to perform effortless and secure transactions.
 
 This package is proudly developed by AQ Shah, a full-stack Laravel developer, with a passion for creating efficient and reliable solutions for payment processing in Laravel applications.
 
-### How to Set Up
+## How to Set Up
 
 ### Step 1: Install Package
 
@@ -57,7 +57,7 @@ return [
     'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'failed'),
 ];
 ```
-### Handling Payment Callbacks
+## Handling Payment Callbacks
 
 After configuring the MezPay package, you need to create routes to handle the payment success and failure callbacks.
 
@@ -108,7 +108,7 @@ class OrdersController extends Controller
 ```
 
 
-### How to Use:
+## How to Use:
 To use MezPay, follow these steps:
 
 ### Step 1: Import MezPayFacade
