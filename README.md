@@ -33,7 +33,9 @@ To publish the configuration and migrations for the MezPay package, run the foll
 
 ```bash
 php artisan vendor:publish --tag=config
+
 php artisan vendor:publish --tag=mezpay-migrations --ansi
+
 php artisan migrate
 ```
 After publishing, you can set your API credentials in the generated configuration file located at config/mezpay.php:
