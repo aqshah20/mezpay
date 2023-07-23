@@ -121,9 +121,9 @@ use MezPay\Facade\MezPayFacade;
 Register an order with the minimum required parameters using the registerOrder method:
 ```php
 $paymentGateway = MezPayFacade::registerOrder([
-    'order_id' => 1000,
+    'order_id' => 152,
     'currency' => 586, // 586 = PKR | 540 = USD
-    'amount' => 1000,
+    'amount' => 2000,
 ]);
 ```
 
