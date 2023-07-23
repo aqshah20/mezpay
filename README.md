@@ -42,10 +42,22 @@ After publishing, you can set your API credentials in the generated configuratio
 return [
     'username' => env('MEZPAY_USERNAME', ''),
     'password' => env('MEZPAY_PASSWORD', ''),
-    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
-    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'field'),
+    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', ''),
+    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', ''),
 ];
 ```
+### Configuration
+You can customize the package by adjusting the following settings in the config/mezpay.php file:
+
+```php
+return [
+    'username' => env('MEZPAY_USERNAME', ''),
+    'password' => env('MEZPAY_PASSWORD', ''),
+    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
+    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'failed'),
+];
+```
+
 
 ### How to Use:
 To use MezPay, follow these steps:
@@ -65,17 +77,13 @@ $paymentGateway = MezPayFacade::registerOrder([
     'amount' => 1000,
 ]);
 ```
+### How to Get Order Status:
+To obtain the order status, simply call the #### getOrderStatus(152)  method with the  #### orderId as a parameter.
 
-### Configuration
-You can customize the package by adjusting the following settings in the config/mezpay.php file:
-```php
-return [
-    'username' => env('MEZPAY_USERNAME', ''),
-    'password' => env('MEZPAY_PASSWORD', ''),
-    'success_callback' => env('MEZPAY_SUCCESS_CALLBACK', 'success'),
-    'failed_callback' => env('MEZPAY_FAILED_CALLBACK', 'failed'),
-];
-```
+
+
+
+
 ### License
 This MezPay package is open-source software licensed under the MIT License. See the [LICENSE](https://github.com/spatie/laravel-permission/blob/main/LICENSE.md) file for more information.
 ### Contributions and Feedback
